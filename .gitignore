@@ -1,0 +1,8 @@
+bin
+obj
+*.msi
+*.exe
+packages
+.paket
+.DS_Store
+.vs

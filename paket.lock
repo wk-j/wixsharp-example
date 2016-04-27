@@ -1,0 +1,6 @@
+NUGET
+  remote: https://www.nuget.org/api/v2
+  specs:
+    WixSharp (1.0.35.3)
+      WixSharp.bin (>= 1.0.35.3)
+    WixSharp.bin (1.0.35.3)
