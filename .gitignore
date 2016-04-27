@@ -2,6 +2,7 @@ bin
 obj
 *.msi
 *.exe
+*.dll
 packages
 .paket
 .DS_Store

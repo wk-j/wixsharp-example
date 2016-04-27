@@ -6,7 +6,7 @@
 </auto-generated>
 -->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="bdeadfab-df0e-428d-8dcf-b205310a8101" Name="MyApplication" Language="1033" Codepage="Windows-1252" Version="1.0.0.0" UpgradeCode="bdeadfab-df0e-428d-8dcf-b205210a8100" Manufacturer="wk">
+  <Product Id="2496c0e3-505f-4327-97dd-2632b3ad9306" Name="MyApplication" Language="1033" Codepage="Windows-1252" Version="1.0.0.0" UpgradeCode="2496c0e3-505f-4327-97dd-2632a3ad9305" Manufacturer="wk">
     <Package InstallerVersion="200" Compressed="yes" SummaryCodepage="Windows-1252" Languages="1033" />
     <Media Id="1" Cabinet="MyApplication.cab" EmbedCab="yes" />
 
@@ -14,16 +14,16 @@
       <Directory Id="ProgramFilesFolder" Name="ProgramFilesFolder">
         <Directory Id="INSTALLDIR" Name="MyApplication">
 
-          <Component Id="Component.MyApplication.exe.config" Guid="bdeadfab-df0e-428d-8dcf-b205b210dc71">
-            <File Id="MyApplication.exe.config" Source="..\MyApplication\bin\Release\MyApplication.exe.config" />
+          <Component Id="Component.MyApplication.exe.config" Guid="2496c0e3-505f-4327-97dd-263234b3ee76">
+            <File Id="MyApplication.exe.config" Source="src\MyApplication\bin\Release\MyApplication.exe.config" />
           </Component>
 
-          <Component Id="Component.MyApplication.exe" Guid="bdeadfab-df0e-428d-8dcf-b205c5a6d1e0">
-            <File Id="MyApplication.exe" Source="..\MyApplication\bin\Release\MyApplication.exe" />
+          <Component Id="Component.MyApplication.exe" Guid="2496c0e3-505f-4327-97dd-26324749e3e5">
+            <File Id="MyApplication.exe" Source="src\MyApplication\bin\Release\MyApplication.exe" />
           </Component>
 
-          <Component Id="Component.FSharp.Core.dll" Guid="bdeadfab-df0e-428d-8dcf-b205c40317db">
-            <File Id="FSharp.Core.dll" Source="..\MyApplication\bin\Release\FSharp.Core.dll" />
+          <Component Id="Component.FSharp.Core.dll" Guid="2496c0e3-505f-4327-97dd-263246a629e0">
+            <File Id="FSharp.Core.dll" Source="src\MyApplication\bin\Release\FSharp.Core.dll" />
           </Component>
 
         </Directory>
@@ -31,6 +31,9 @@
     </Directory>
 
     <CustomAction Id="Action1SetProp_IDIR" Property="IDIR" Value="[INSTALLDIR]" Return="check" Execute="immediate" />
+    <CustomAction Id="Action2_Invoke" BinaryKey="Action2_Invoke_File" DllEntry="Invoke" Return="check" Execute="immediate" />
+
+    <Binary Id="Action2_Invoke_File" SourceFile="%this%.CA.dll" />
 
     <UIRef Id="WixUI_Minimal" />
 
@@ -45,6 +48,7 @@
 
     <InstallExecuteSequence>
       <Custom Action="Action1SetProp_IDIR" After="InstallInitialize"> (NOT Installed) </Custom>
+      <Custom Action="Action2_Invoke" After="Action1SetProp_IDIR"> (NOT Installed) </Custom>
     </InstallExecuteSequence>
 
   </Product>
