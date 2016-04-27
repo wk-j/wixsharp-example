@@ -2,7 +2,7 @@
 
 - พิมพ์ `build.cmd` ใน `cmd`
 - จะได้ไฟล์ `src\WixSharpExample\MyApplication.msi`
-- Double click ไฟล์ msi โปรแกรมติดตั้งที่ `%ProfileFiles/MyApplication`
+- Double click ไฟล์ msi -> Next -> Next โปรแกรมถูกติดตั้งไว้ที่ `%ProfileFiles/MyApplication`
 
 #### Issue - The Wix element has an incorrect
 
