@@ -11,7 +11,7 @@ paket add nuget WixSharp project src/WixSharpExample.CS/WixSharpExample.CS.cspro
 
 - พิมพ์ `build.cmd` ใน `cmd`
 - จะได้ไฟล์ `src\WixSharpExample\MyApplication.msi`
-- Double click ไฟล์ msi -> `Next` -> `Next` โปรแกรมถูกติดตั้งไว้ที่ `%ProfileFiles/MyApplication`
+- Double click ไฟล์ msi -> `next` -> `next` โปรแกรมถูกติดตั้งไว้ที่ `%ProfileFiles/MyApplication`
 
 #### Issue - The Wix element has an incorrect
 
@@ -41,7 +41,7 @@ Environment.SetEnvironmentVariable
 
 #### Issue - [CustomAction] attribute but they don't meet the MakeSfxCA criteria.
 
-- Error หลังจาก MSBuild พยายาม Excute `WixSharpExample.exe`
+- Error หลังจาก `MSBuild` พยายาม `execute WixSharpExample.exe`
 
 ```
  "Z:\Source\csharp\wixsharp-setup\WixSharpExample\src\WixSharpExample\bin\Release\WixSharpExample.exe" "/MSBUILD:WixSharpExample"
