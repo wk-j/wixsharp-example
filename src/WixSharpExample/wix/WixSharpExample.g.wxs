@@ -6,7 +6,7 @@
 </auto-generated>
 -->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="bdeadfab-df0e-428d-8dcf-b205310a8101" Name="MyApplication" Language="1033" Codepage="Windows-1252" Version="1.0.0.0" UpgradeCode="bdeadfab-df0e-428d-8dcf-b205210a8100" Manufacturer="wk">
+  <Product Id="d4f5e8a7-2b8d-4cef-9a45-70ffe3322ea0" Name="MyApplication" Language="1033" Codepage="Windows-1252" Version="1.0.0.0" UpgradeCode="d4f5e8a7-2b8d-4cef-9a45-70ffd3322e9f" Manufacturer="wk">
     <Package InstallerVersion="200" Compressed="yes" SummaryCodepage="Windows-1252" Languages="1033" />
     <Media Id="1" Cabinet="MyApplication.cab" EmbedCab="yes" />
 
@@ -14,15 +14,15 @@
       <Directory Id="ProgramFilesFolder" Name="ProgramFilesFolder">
         <Directory Id="INSTALLDIR" Name="MyApplication">
 
-          <Component Id="Component.MyApplication.exe.config" Guid="bdeadfab-df0e-428d-8dcf-b205b210dc71">
+          <Component Id="Component.MyApplication.exe.config" Guid="d4f5e8a7-2b8d-4cef-9a45-70ff64388910">
             <File Id="MyApplication.exe.config" Source="..\MyApplication\bin\Release\MyApplication.exe.config" />
           </Component>
 
-          <Component Id="Component.MyApplication.exe" Guid="bdeadfab-df0e-428d-8dcf-b205c5a6d1e0">
+          <Component Id="Component.MyApplication.exe" Guid="d4f5e8a7-2b8d-4cef-9a45-70ff77ce7e7f">
             <File Id="MyApplication.exe" Source="..\MyApplication\bin\Release\MyApplication.exe" />
           </Component>
 
-          <Component Id="Component.FSharp.Core.dll" Guid="bdeadfab-df0e-428d-8dcf-b205c40317db">
+          <Component Id="Component.FSharp.Core.dll" Guid="d4f5e8a7-2b8d-4cef-9a45-70ff762bc47a">
             <File Id="FSharp.Core.dll" Source="..\MyApplication\bin\Release\FSharp.Core.dll" />
           </Component>
 
@@ -35,7 +35,6 @@
     <UIRef Id="WixUI_Minimal" />
 
     <Property Id="IDIR" Value="empty" />
-    <Property Id="Test" Value="empty" />
 
     <Feature Id="Complete" Title="Complete" Absent="allow" Level="1">
       <ComponentRef Id="Component.MyApplication.exe.config" />

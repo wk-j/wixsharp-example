@@ -1,5 +1,10 @@
+#### Build
 
-## Issue - The Wix element has an incorrect
+- พิมพ์ `build.cmd` ใน `cmd`
+- จะได้ไฟล์ `src\WixSharpExample\MyApplication.msi`
+- Double click ไฟล์ msi โปรแกรมติดตั้งที่ `%ProfileFiles/MyApplication`
+
+#### Issue - The Wix element has an incorrect
 
 - จะมีปัญหากับ Wix Toolset เวอร์ชั่น 4
 - https://github.com/sbt/sbt-native-packager/issues/780
@@ -25,7 +30,7 @@ Environment.SetEnvironmentVariable
      EnvironmentVariableTarget.Process)
 ```
 
-## Issue - [CustomAction] attribute but they don't meet the MakeSfxCA criteria.
+#### Issue - [CustomAction] attribute but they don't meet the MakeSfxCA criteria.
 
 - Error หลังจาก MSBuild พยายาม Excute `WixSharpExample.exe`
 
@@ -49,38 +54,4 @@ EXEC : error : System.IO.IOException: EnumResourceNames error. Error code: 1813 
      at Microsoft.Deployment.Tools.MakeSfxCA.MakeSfxCA.Build(String output, String sfxdll, IList`1 inputs, TextWriter log)
      at Microsoft.Deployment.Tools.MakeSfxCA.MakeSfxCA.Main(String[] args)
   Wix# support for EmptyDirectories is automatically disabled
-```
-
-- CustomActions.MyAction จะมีปัญหาใน `F#` ปิด CustomAction ไปก่อนให้เหลือเฉพาะที่จำเป็น
-
-```fsharp
-let build() =
-    Environment.SetEnvironmentVariable
-        ("WIXSHARP_WIXDIR", sprintf "%s" @"C:\Program Files (x86)\WiX Toolset v3.10\bin",
-         EnvironmentVariableTarget.Process)
-    Environment.SetEnvironmentVariable("WIXSHARP_DIR", Environment.CurrentDirectory, EnvironmentVariableTarget.Process)
-    let installDir = "%ProgramFiles%\MyApplication"
-    let appDir = sprintf @"Z:\Source\csharp\wixsharp-setup\WixSharpExample\src\MyApplication\bin\Release"
-
-    let getFile name =
-        let path = sprintf "%s\%s" appDir name
-        File(path)
-
-    let dir =
-        new Dir(installDir,
-                getFile ("MyApplication.exe.config"),
-                getFile ("MyApplication.exe"),
-                getFile ("FSharp.Core.dll"))
-    let proj =
-        Project
-            ("MyApplication", dir,
-                SetPropertyAction("IDIR", "[INSTALLDIR]"),
-                Property("IDIR", "empty"))
-
-    Compiler.BuildMsi(proj)
-
-[<EntryPoint>]
-let main argv =
-    build() |> ignore
-    (0)
 ```
