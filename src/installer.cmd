@@ -1,0 +1,1 @@
+"Z:\Source\csharp\wixsharp-setup\WixSharpExample\src\MyApplication.Installer\bin\Debug\WixSharpExample.exe" "/MSBUILD:MyApplication.Installer"

@@ -6,7 +6,7 @@
 </auto-generated>
 -->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="c62f3621-595c-414c-8906-9a0cc2045069" Name="MyApplication.Installer" Language="1033" Codepage="Windows-1252" Version="1.0.0.0" UpgradeCode="c62f3621-595c-414c-8906-9a0cb2045068" Manufacturer="wk">
+  <Product Id="83ac21de-749a-4e23-87a9-d25e7b2cd67c" Name="MyApplication.Installer" Language="1033" Codepage="Windows-1252" Version="1.0.0.0" UpgradeCode="83ac21de-749a-4e23-87a9-d25e6b2cd67b" Manufacturer="wk">
     <Package InstallerVersion="200" Compressed="yes" SummaryCodepage="Windows-1252" Languages="1033" />
     <Media Id="1" Cabinet="MyApplication.Installer.cab" EmbedCab="yes" />
 
@@ -14,25 +14,61 @@
       <Directory Id="ProgramFilesFolder" Name="ProgramFilesFolder">
         <Directory Id="INSTALLDIR" Name="MyApplication">
 
-          <Component Id="Component.MyApplication.exe" Guid="c62f3621-595c-414c-8906-9a0c56a0a048">
-            <File Id="MyApplication.exe" Source="..\MyApplication\bin\Release\MyApplication.exe" />
+          <Component Id="Component.MyApplication.exe" Guid="83ac21de-749a-4e23-87a9-d25e0fc8265b">
+            <File Id="MyApplication.exe" Source="..\MyApplication\bin\Release\MyApplication.exe">
+              <Shortcut Id="Shortcut.MyApplication.exe.MyApplication.exe" WorkingDirectory="INSTALLDIR" Directory="INSTALLDIR" Name="MyApplication.exe.lnk" />
+              <Shortcut Id="Shortcut.MyApplication.exe.MyApplication.exe.1" WorkingDirectory="INSTALLDIR" Directory="DesktopFolder" Name="MyApplication.exe.lnk" />
+            </File>
+
+            <RegistryKey Root="HKCU" Key="Software\WixSharp\Used">
+              <RegistryValue Value="0" Type="string" KeyPath="yes" />
+            </RegistryKey>
           </Component>
 
-          <Component Id="Component.FSharp.Core.dll" Guid="c62f3621-595c-414c-8906-9a0c55fde643">
+          <Component Id="Component.FSharp.Core.dll" Guid="83ac21de-749a-4e23-87a9-d25e0e256c56">
             <File Id="FSharp.Core.dll" Source="..\MyApplication\bin\Release\FSharp.Core.dll" />
           </Component>
 
-          <Component Id="Component.Newtonsoft.Json.dll" Guid="c62f3621-595c-414c-8906-9a0c405ecb43">
+          <Component Id="Component.Newtonsoft.Json.dll" Guid="83ac21de-749a-4e23-87a9-d25ef9865156">
             <File Id="Newtonsoft.Json.dll" Source="..\MyApplication\bin\Release\Newtonsoft.Json.dll" />
           </Component>
 
-          <Component Id="Component.MyApplication.exe.config" Guid="c62f3621-595c-414c-8906-9a0c430aabd9">
+          <Component Id="Component.MyApplication.exe.config" Guid="83ac21de-749a-4e23-87a9-d25efc3231ec">
             <File Id="MyApplication.exe.config" Source="..\MyApplication\bin\Release\MyApplication.exe.config" />
           </Component>
 
         </Directory>
       </Directory>
+
+      <Directory Id="TARGETDIR.INSTALLDIR" Name="INSTALLDIR">
+
+        <Component Id="INSTALLDIR.EmptyDirectory" Guid="83ac21de-749a-4e23-87a9-d25e0671f13c" KeyPath="yes">
+          <CreateFolder />
+          <RemoveFolder Id="TARGETDIR.INSTALLDIR" On="uninstall" />
+        </Component>
+
+      </Directory>
+
+      <Directory Id="DesktopFolder" Name="DesktopFolder">
+
+        <Component Id="DesktopFolder.EmptyDirectory" Guid="83ac21de-749a-4e23-87a9-d25e4913aee5">
+          <CreateFolder />
+
+          <RegistryKey Root="HKCU" Key="Software\WixSharp\Used">
+            <RegistryValue Value="0" Type="string" KeyPath="yes" />
+          </RegistryKey>
+        </Component>
+
+      </Directory>
+
+      <Component Id="TARGETDIR" Guid="83ac21de-749a-4e23-87a9-d25edefc46ee" KeyPath="yes">
+        <CreateFolder />
+        <RemoveFolder Id="TARGETDIR" On="uninstall" />
+      </Component>
+
     </Directory>
+
+    <WixVariable Id="WixUILicenseRtf" Value="Z:\Source\csharp\wixsharp-setup\WixSharpExample\src\MyApplication\bin\Release\LICENSE.rtf" />
 
     <UIRef Id="WixUI_InstallDir" />
 
@@ -43,6 +79,9 @@
       <ComponentRef Id="Component.FSharp.Core.dll" />
       <ComponentRef Id="Component.Newtonsoft.Json.dll" />
       <ComponentRef Id="Component.MyApplication.exe.config" />
+      <ComponentRef Id="INSTALLDIR.EmptyDirectory" />
+      <ComponentRef Id="DesktopFolder.EmptyDirectory" />
+      <ComponentRef Id="TARGETDIR" />
     </Feature>
 
   </Product>

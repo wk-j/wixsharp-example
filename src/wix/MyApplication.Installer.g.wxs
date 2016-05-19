@@ -6,7 +6,7 @@
 </auto-generated>
 -->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="4b403bfc-95c7-41fd-9d39-6a2691e6edf6" Name="MyApplication.Installer" Language="1033" Codepage="Windows-1252" Version="1.0.0.0" UpgradeCode="4b403bfc-95c7-41fd-9d39-6a2681e6edf5" Manufacturer="wk">
+  <Product Id="4884f3f4-5a9e-4bbb-ade8-f0387592e737" Name="MyApplication.Installer" Language="1033" Codepage="Windows-1252" Version="1.0.0.0" UpgradeCode="4884f3f4-5a9e-4bbb-ade8-f0386592e736" Manufacturer="wk">
     <Package InstallerVersion="200" Compressed="yes" SummaryCodepage="Windows-1252" Languages="1033" />
     <Media Id="1" Cabinet="MyApplication.Installer.cab" EmbedCab="yes" />
 
@@ -14,29 +14,31 @@
       <Directory Id="ProgramFilesFolder" Name="ProgramFilesFolder">
         <Directory Id="INSTALLDIR" Name="MyApplication">
 
-          <Component Id="Component.MyApplication.exe" Guid="4b403bfc-95c7-41fd-9d39-6a2625823dd5">
-            <File Id="MyApplication.exe" Source="MyApplication.exe" />
+          <Component Id="Component.MyApplication.exe" Guid="4884f3f4-5a9e-4bbb-ade8-f038092e3716">
+            <File Id="MyApplication.exe" Source="MyApplication\bin\Release\MyApplication.exe" />
           </Component>
 
-          <Component Id="Component.FSharp.Core.dll" Guid="4b403bfc-95c7-41fd-9d39-6a2624df83d0">
-            <File Id="FSharp.Core.dll" Source="FSharp.Core.dll" />
+          <Component Id="Component.FSharp.Core.dll" Guid="4884f3f4-5a9e-4bbb-ade8-f038088b7d11">
+            <File Id="FSharp.Core.dll" Source="MyApplication\bin\Release\FSharp.Core.dll" />
           </Component>
 
-          <Component Id="Component.Newtonsoft.Json.dll" Guid="4b403bfc-95c7-41fd-9d39-6a260f4068d0">
-            <File Id="Newtonsoft.Json.dll" Source="Newtonsoft.Json.dll" />
+          <Component Id="Component.Newtonsoft.Json.dll" Guid="4884f3f4-5a9e-4bbb-ade8-f038f3ec6211">
+            <File Id="Newtonsoft.Json.dll" Source="MyApplication\bin\Release\Newtonsoft.Json.dll" />
           </Component>
 
-          <Component Id="Component.MyApplication.exe.config" Guid="4b403bfc-95c7-41fd-9d39-6a2612ec4866">
-            <File Id="MyApplication.exe.config" Source="MyApplication.exe.config" />
+          <Component Id="Component.MyApplication.exe.config" Guid="4884f3f4-5a9e-4bbb-ade8-f038f69842a7">
+            <File Id="MyApplication.exe.config" Source="MyApplication\bin\Release\MyApplication.exe.config" />
           </Component>
 
         </Directory>
       </Directory>
     </Directory>
 
-    <CustomAction Id="Action1SetProp_IDIR" Property="IDIR" Value="[INSTALLDIR]" Return="check" Execute="immediate" />
+    <WixVariable Id="WixUILicenseRtf" Value="Z:\Source\csharp\wixsharp-setup\WixSharpExample\src\MyApplication\bin\Release\LICENSE.rtf" />
 
-    <UIRef Id="WixUI_Minimal" />
+    <UIRef Id="WixUI_InstallDir" />
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
 
     <Feature Id="Complete" Title="Complete" Absent="allow" Level="1">
       <ComponentRef Id="Component.MyApplication.exe" />
@@ -44,10 +46,6 @@
       <ComponentRef Id="Component.Newtonsoft.Json.dll" />
       <ComponentRef Id="Component.MyApplication.exe.config" />
     </Feature>
-
-    <InstallExecuteSequence>
-      <Custom Action="Action1SetProp_IDIR" After="InstallInitialize"> (NOT Installed) </Custom>
-    </InstallExecuteSequence>
 
   </Product>
 </Wix>
