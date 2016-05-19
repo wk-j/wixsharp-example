@@ -10,7 +10,7 @@ paket add nuget WixSharp project src/WixSharpExample.CS/WixSharpExample.CS.cspro
 #### Build
 
 - พิมพ์ `build.cmd` ใน `cmd`
-- จะได้ไฟล์ `src\WixSharpExample\MyApplication.msi`
+- จะได้ไฟล์ `src\MyApplication.Installer\MyApplication.Installer.msi`
 - Double click ไฟล์ msi -> `next` -> `next` โปรแกรมถูกติดตั้งไว้ที่ `%ProfileFiles/MyApplication`
 
 #### Issue - The Wix element has an incorrect
@@ -37,30 +37,4 @@ xample\WixSharpExample.fsproj]
 Environment.SetEnvironmentVariable
     ("WIXSHARP_WIXDIR", sprintf "%s" @"C:\Program Files (x86)\WiX Toolset v3.10\bin",
      EnvironmentVariableTarget.Process)
-```
-
-#### Issue - [CustomAction] attribute but they don't meet the MakeSfxCA criteria.
-
-- Error หลังจาก `MSBuild` พยายาม `execute WixSharpExample.exe`
-
-```
- "Z:\Source\csharp\wixsharp-setup\WixSharpExample\src\WixSharpExample\bin\Release\WixSharpExample.exe" "/MSBUILD:WixSharpExample"
-EXEC : warning : some of the type members are marked with [CustomAction] attribute but they don't meet the MakeSfxCA criteria of being public static method of a public type: [Z:\Source\csharp\wixsharp-setup\WixSharpExample\src\WixSharpExample\WixSharpExample.fsproj]
-    WixSharpExample+CustomActions.MyAction
-
-  Searching for custom action entry points in WixSharpExample.exe
-      Loaded dependent assembly: C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\FSharp.Core\v4.0_4.4.0.0__b03f5f7f11d50a3a\FSharp.Core.dll
-      Loaded dependent assembly: C:\Program Files (x86)\WiX Toolset v3.10\sdk\Microsoft.Deployment.WindowsInstaller.dll
-      MyAction=WixSharpExample!WixSharpExample+CustomActions.MyAction
-  Searching for an embedded UI class in WixSharpExample.exe
-  Modifying SfxCA.dll stub
-  Copying file version info from Z:\Source\csharp\wixsharp-setup\WixSharpExample\src\WixSharpExample\WixSharpExample.exe to Z:\Source\csharp\wixsharp-setup\WixSharpExample
-  \src\WixSharpExample\%this%.CA.dll
-EXEC : error : System.IO.IOException: EnumResourceNames error. Error code: 1813 [Z:\Source\csharp\wixsharp-setup\WixSharpExample\src\WixSharpExample\WixSharpExample.fsproj
-]
-     at Microsoft.Deployment.Resources.ResourceCollection.Find(String resFile, ResourceType type)
-     at Microsoft.Deployment.Tools.MakeSfxCA.MakeSfxCA.CopyVersionResource(String sourceFile, String destFile)
-     at Microsoft.Deployment.Tools.MakeSfxCA.MakeSfxCA.Build(String output, String sfxdll, IList`1 inputs, TextWriter log)
-     at Microsoft.Deployment.Tools.MakeSfxCA.MakeSfxCA.Main(String[] args)
-  Wix# support for EmptyDirectories is automatically disabled
 ```

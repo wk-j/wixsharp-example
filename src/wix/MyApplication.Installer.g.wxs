@@ -6,24 +6,28 @@
 </auto-generated>
 -->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="d4f5e8a7-2b8d-4cef-9a45-70ffe3322ea0" Name="MyApplication" Language="1033" Codepage="Windows-1252" Version="1.0.0.0" UpgradeCode="d4f5e8a7-2b8d-4cef-9a45-70ffd3322e9f" Manufacturer="wk">
+  <Product Id="4b403bfc-95c7-41fd-9d39-6a2691e6edf6" Name="MyApplication.Installer" Language="1033" Codepage="Windows-1252" Version="1.0.0.0" UpgradeCode="4b403bfc-95c7-41fd-9d39-6a2681e6edf5" Manufacturer="wk">
     <Package InstallerVersion="200" Compressed="yes" SummaryCodepage="Windows-1252" Languages="1033" />
-    <Media Id="1" Cabinet="MyApplication.cab" EmbedCab="yes" />
+    <Media Id="1" Cabinet="MyApplication.Installer.cab" EmbedCab="yes" />
 
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder" Name="ProgramFilesFolder">
         <Directory Id="INSTALLDIR" Name="MyApplication">
 
-          <Component Id="Component.MyApplication.exe.config" Guid="d4f5e8a7-2b8d-4cef-9a45-70ff64388910">
-            <File Id="MyApplication.exe.config" Source="..\MyApplication\bin\Release\MyApplication.exe.config" />
+          <Component Id="Component.MyApplication.exe" Guid="4b403bfc-95c7-41fd-9d39-6a2625823dd5">
+            <File Id="MyApplication.exe" Source="MyApplication.exe" />
           </Component>
 
-          <Component Id="Component.MyApplication.exe" Guid="d4f5e8a7-2b8d-4cef-9a45-70ff77ce7e7f">
-            <File Id="MyApplication.exe" Source="..\MyApplication\bin\Release\MyApplication.exe" />
+          <Component Id="Component.FSharp.Core.dll" Guid="4b403bfc-95c7-41fd-9d39-6a2624df83d0">
+            <File Id="FSharp.Core.dll" Source="FSharp.Core.dll" />
           </Component>
 
-          <Component Id="Component.FSharp.Core.dll" Guid="d4f5e8a7-2b8d-4cef-9a45-70ff762bc47a">
-            <File Id="FSharp.Core.dll" Source="..\MyApplication\bin\Release\FSharp.Core.dll" />
+          <Component Id="Component.Newtonsoft.Json.dll" Guid="4b403bfc-95c7-41fd-9d39-6a260f4068d0">
+            <File Id="Newtonsoft.Json.dll" Source="Newtonsoft.Json.dll" />
+          </Component>
+
+          <Component Id="Component.MyApplication.exe.config" Guid="4b403bfc-95c7-41fd-9d39-6a2612ec4866">
+            <File Id="MyApplication.exe.config" Source="MyApplication.exe.config" />
           </Component>
 
         </Directory>
@@ -34,12 +38,11 @@
 
     <UIRef Id="WixUI_Minimal" />
 
-    <Property Id="IDIR" Value="empty" />
-
     <Feature Id="Complete" Title="Complete" Absent="allow" Level="1">
-      <ComponentRef Id="Component.MyApplication.exe.config" />
       <ComponentRef Id="Component.MyApplication.exe" />
       <ComponentRef Id="Component.FSharp.Core.dll" />
+      <ComponentRef Id="Component.Newtonsoft.Json.dll" />
+      <ComponentRef Id="Component.MyApplication.exe.config" />
     </Feature>
 
     <InstallExecuteSequence>

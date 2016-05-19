@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="4b403bfc-95c7-41fd-9d39-6a2691e6edf6" Name="MyApplication.Installer" Language="1033" Codepage="Windows-1252" Version="1.0.0.0" UpgradeCode="4b403bfc-95c7-41fd-9d39-6a2681e6edf5" Manufacturer="wk">
+    <Package InstallerVersion="200" Compressed="yes" SummaryCodepage="Windows-1252" Languages="1033" />
+    <Media Id="1" Cabinet="MyApplication.Installer.cab" EmbedCab="yes" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder" Name="ProgramFilesFolder">
+        <Directory Id="INSTALLDIR" Name="MyApplication">
+
+          <Component Id="Component.MyApplication.exe" Guid="4b403bfc-95c7-41fd-9d39-6a2625823dd5">
+            <File Id="MyApplication.exe" Source="MyApplication.exe" />
+          </Component>
+
+          <Component Id="Component.FSharp.Core.dll" Guid="4b403bfc-95c7-41fd-9d39-6a2624df83d0">
+            <File Id="FSharp.Core.dll" Source="FSharp.Core.dll" />
+          </Component>
+
+          <Component Id="Component.Newtonsoft.Json.dll" Guid="4b403bfc-95c7-41fd-9d39-6a260f4068d0">
+            <File Id="Newtonsoft.Json.dll" Source="Newtonsoft.Json.dll" />
+          </Component>
+
+          <Component Id="Component.MyApplication.exe.config" Guid="4b403bfc-95c7-41fd-9d39-6a2612ec4866">
+            <File Id="MyApplication.exe.config" Source="MyApplication.exe.config" />
+          </Component>
+
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <CustomAction Id="Action1SetProp_IDIR" Property="IDIR" Value="[INSTALLDIR]" Return="check" Execute="immediate" />
+
+    <UIRef Id="WixUI_Minimal" />
+
+    <Feature Id="Complete" Title="Complete" Absent="allow" Level="1">
+      <ComponentRef Id="Component.MyApplication.exe" />
+      <ComponentRef Id="Component.FSharp.Core.dll" />
+      <ComponentRef Id="Component.Newtonsoft.Json.dll" />
+      <ComponentRef Id="Component.MyApplication.exe.config" />
+    </Feature>
+
+    <InstallExecuteSequence>
+      <Custom Action="Action1SetProp_IDIR" After="InstallInitialize"> (NOT Installed) </Custom>
+    </InstallExecuteSequence>
+
+  </Product>
+</Wix>
+
