@@ -57,7 +57,7 @@ src
 
 Script installer ทั้งหมดจะเก็บไว้ในไฟล์ Main.fs
 
-```csharp
+```fsharp
 open System
 open WixSharp
 open System.Linq
@@ -122,7 +122,7 @@ Status API Training Shop Blog About
 
 #### Bundle ไฟล์ทั้งหมดที่มีนามสกุล .exe .dll และ .config ของโปรแกรม MyApplication
 
-```
+```fsharp
 let flatten input =
     seq {
         for file in input do
@@ -142,7 +142,7 @@ let interestedFiles =
 #### อนุญาติให้ผู้ใช้เปลี่ยน Installation path ได้ (default คือ %ProgramFiles%)
 #### ก่อนติดตั้งต้องแสดงหน้าจอ License ที่โหลดเนื้อหาจากไฟล์ LICENSE.rtf
 
-```
+```fsharp
 let createProject config files =
     let dir = new Dir(config.InstallDir, files)
     let proj = Project(config.InstallerName, dir)
@@ -153,7 +153,7 @@ let createProject config files =
 
 #### สร้าง Shortcuts MyApplication.exe ไว้ที่ Desktop
 
-```
+```fsharp
 let createShortcut (exe : File) =
     exe.Shortcuts <- [| FileShortcut(exe.Id, "INSTALLDIR")
                         FileShortcut(exe.Id, "%Desktop%") |]
@@ -161,7 +161,7 @@ let createShortcut (exe : File) =
 
 ## Build
 
-สร้าง Build ผ่าน Visual Studio (เลือก Configration เป็น Release) หรือผ่าน Command line โดยใช้คำสั่ง
+สามารถ Build ผ่าน Visual Studio (เลือก Configration เป็น Release) หรือผ่าน Command line โดยใช้คำสั่ง
 
 ```
 msbuild MyApplication.sln /t:Build /p:Configuration=Release
